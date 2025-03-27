@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Power ToDo - Manajemen Produktivitas Modern</title>
+    <link rel="stylesheet" href="css/home.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header>
+            <div class="logo">
+                <i class="fas fa-tasks-alt"></i>
+                <h1>Power<span>ToDo</span></h1>
+            </div>  
+            <div class="user-actions">
+                <div class="theme-toggle">
+                    <i class="fas fa-sun"></i>
+                    <i class="fas fa-moon"></i>
+                </div>
+                <div class="user-profile">
+                    <img src="https://ui-avatars.com/api/?name=User&background=random" alt="User Profile">
+                </div>
+            </div>
+        </header>
+
+        <!-- Dashboard Utama -->
+        <main>
+            <div class="dashboard-header">
+                <div class="greeting">
+                    <h2>Selamat Datang, <span class="username">User</span></h2>
+                    <p class="date-display"></p>
+                </div>
+                <div class="quick-stats">
+                    <div class="stat-card">
+                        <h3>Tugas Hari Ini</h3>
+                        <p class="stat-number">8</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Selesai</h3>
+                        <p class="stat-number">3</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Progress</h3>
+                        <div class="progress-bar">
+                            <div class="progress" style="width: 38%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Area Manajemen Tugas -->
+            <div class="task-management">
+                <div class="task-input-area">
+                    <h2>Tambah Tugas Baru</h2>
+                    <form id="task-form">
+                        <div class="input-group">
+                            <input type="text" id="task-title" placeholder="Judul tugas" required>
+                        </div>
+                        <div class="input-row">
+                            <div class="input-group">
+                                <select id="task-category">
+                                    <option value="">Pilih Kategori</option>
+                                    <option value="professional">Profesional</option>
+                                    <option value="personal">Personal</option>
+                                    <option value="academic">Akademik</option>
+                                </select>
+                            </div>
+                            <div class="input-group">
+                                <select id="task-priority">
+                                    <option value="">Pilih Prioritas</option>
+                                    <option value="low">Rendah</option>
+                                    <option value="medium">Sedang</option>
+                                    <option value="high">Tinggi</option>
+                                    <option value="urgent">Mendesak</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="input-row">
+                            <div class="input-group">
+                                <input type="date" id="task-deadline">
+                            </div>
+                            <div class="input-group">
+                                <input type="number" id="task-estimate" placeholder="Estimasi (menit)" min="1">
+                            </div>
+                        </div>
+                        <div class="input-group">
+                            <textarea id="task-description" placeholder="Deskripsi (opsional)"></textarea>
+                        </div>
+                        <button type="submit" class="btn-add">Tambahkan Tugas</button>
+                    </form>
+                </div>
+
+                <div class="task-list-container">
+                    <div class="task-list-header">
+                        <h2>Daftar Tugas</h2>
+                        <div class="task-filter">
+                            <select id="filter-category">
+                                <option value="all">Semua Kategori</option>
+                                <option value="professional">Profesional</option>
+                                <option value="personal">Personal</option>
+                                <option value="academic">Akademik</option>
+                            </select>
+                            <select id="filter-status">
+                                <option value="all">Semua Status</option>
+                                <option value="pending">Belum Selesai</option>
+                                <option value="completed">Selesai</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="task-list" id="task-list">
+                  
+                    </div>
+    
+                </div>
+            </div>
+
+            <!-- Area Statistik & Analitik -->
+            <div class="analytics-section">
+                <h2>Analisis Produktivitas</h2>
+                <div class="analytics-cards">
+                    <div class="analytic-card">
+                        <h3>Grafik Mingguan</h3>
+                        <canvas id="weekly-chart"></canvas>
+                    </div>
+                    <div class="analytic-card">
+                        <h3>Distribusi Kategori</h3>
+                        <canvas id="category-chart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Widget Motivasi -->
+            <div class="motivation-widget">
+                <div class="quote-card">
+                    <i class="fas fa-quote-left"></i>
+                    <p class="quote-text">Produktivitas bukanlah tentang seberapa banyak yang kamu kerjakan, tapi seberapa efektif kamu mengerjakannya.</p>
+                    <p class="quote-author">- Power ToDo</p>
+                </div>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer>
+            <p>&copy; 2025 Power ToDo - Sistem Manajemen Produktivitas</p>
+            <div class="footer-links">
+                <a href="#">Tentang</a>
+                <a href="#">Bantuan</a>
+                <a href="#">Kontak</a>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Template untuk Tugas -->
+    <template id="task-template">
+        <div class="task-item">
+            <div class="task-content">
+                <div class="task-check">
+                    <input type="checkbox" class="task-complete-checkbox">
+                </div>
+                <div class="task-info">
+                    <h3 class="task-title"></h3>
+                    <div class="task-meta">
+                        <span class="task-category"></span>
+                        <span class="task-deadline"></span>
+                    </div>
+                    <p class="task-description"></p>
+                </div>
+            </div>
+            <div class="task-actions">
+                <button class="btn-edit"><i class="fas fa-edit"></i></button>
+                <button class="btn-delete"><i class="fas fa-trash-alt"></i></button>
+            </div>
+        </div>
+    </template>
+
+    <!-- Popup Notifikasi -->
+    <div class="notification-container">
+        <div class="notification-popup" id="task-added-popup">
+            <div class="notification-content">
+                <div class="notification-icon">
+                    <i class="fas fa-check-circle"></i>
+                </div>
+                <div class="notification-text">
+                    <h3>Tugas Berhasil Ditambahkan</h3>
+                    <p class="notification-task-title"></p>
+                </div>
+                <div class="notification-close">
+                    <i class="fas fa-times"></i>
+                </div>
+            </div>
+            <div class="notification-progress">
+                <div class="progress-bar"></div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Modal Konfirmasi Hapus -->
+    <div class="modal-overlay" id="delete-modal-overlay">
+        <div class="modal-container delete-confirmation">
+            <div class="modal-header">
+                <div class="modal-icon">
+                    <i class="fas fa-trash-alt"></i>
+                </div>
+                <h3>Hapus Tugas</h3>
+            </div>
+            <div class="modal-body">
+                <p>Apakah Anda yakin ingin menghapus tugas: <br><span class="delete-task-title"></span>?</p>
+                <p class="modal-subtitle">Tindakan ini tidak dapat dibatalkan</p>
+            </div>
+            <div class="modal-actions">
+                <button class="btn-cancel" id="cancel-delete-btn">Batal</button>
+                <button class="btn-confirm" id="confirm-delete-btn">Hapus Tugas</button>
+            </div>
+            <div class="modal-decoration">
+                <span class="decoration-dot"></span>
+                <span class="decoration-dot"></span>
+                <span class="decoration-dot"></span>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Modal Nama Pengguna -->
+    <div class="modal-overlay" id="username-modal-overlay">
+        <div class="modal-container username-modal">
+            <div class="modal-header">
+                <div class="modal-icon username-icon">
+                    <i class="fas fa-user"></i>
+                </div>
+                <h3>Personalisasi PowerToDo</h3>
+            </div>
+            <div class="modal-body">
+                <div class="profile-upload-container">
+                    <div class="profile-preview" id="profile-preview">
+                        <img src="https://ui-avatars.com/api/?name=User&background=random" alt="Profile Preview" id="preview-image">
+                        <div class="profile-overlay">
+                            <i class="fas fa-camera"></i>
+                            <span>Ubah Foto</span>
+                        </div>
+                    </div>
+                    <input type="file" id="profile-upload" accept="image/*" class="hidden-upload">
+                </div>
+                
+                <p>Selamat datang di PowerToDo! Silakan masukkan nama Anda untuk pengalaman yang lebih personal.</p>
+                <div class="username-input-container">
+                    <input type="text" id="username-input" placeholder="Masukkan nama Anda" maxlength="20" autocomplete="off">
+                    <div class="floating-label">Nama Anda</div>
+                    <div class="input-focus-effect"></div>
+                </div>
+                <p class="modal-subtitle">Nama dan foto Anda akan ditampilkan di dashboard utama</p>
+            </div>
+            <div class="modal-actions">
+                <button class="btn-cancel" id="cancel-username-btn">Batal</button>
+                <button class="btn-confirm" id="save-username-btn">Simpan</button>
+            </div>
+            <div class="username-decoration">
+                <div class="decoration-circle circle-1"></div>
+                <div class="decoration-circle circle-2"></div>
+                <div class="decoration-circle circle-3"></div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Button untuk edit username (tersembunyi secara default) -->
+    <div class="edit-username-button" id="edit-username-btn" title="Edit Nama Pengguna">
+        <i class="fas fa-user-edit"></i>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="js/home.js"></script>
+</body>
+</html>
