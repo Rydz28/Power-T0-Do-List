@@ -371,7 +371,7 @@ function renderTask(task) {
     // Animasi
     taskItem.classList.add('fade-in');
     
-    // Tambahkan smooth scroll ke tugas baru yang ditambahkan
+    // smooth scroll ke tugas baru yang ditambahkan
     setTimeout(() => {
         const taskItem = document.querySelector(`[data-id="${task.id}"]`);
         if (taskItem) {
@@ -404,12 +404,12 @@ function showDeleteConfirmation(task) {
     // Nonaktifkan scrolling pada body
     document.body.style.overflow = 'hidden';
     
-    // Tambahkan event untuk tombol batal
+    // event untuk tombol batal
     cancelButton.onclick = () => {
         hideDeleteConfirmation(modal);
     };
     
-    // Tambahkan event untuk tombol konfirmasi hapus
+    // event untuk tombol konfirmasi hapus
     confirmButton.onclick = () => {
         // Lakukan penghapusan
         const taskItem = document.querySelector(`[data-id="${task.id}"]`);
@@ -501,7 +501,7 @@ function showDeletedNotification(taskTitle) {
         }, 500);
     }, 5000);
     
-    // Tambahkan event listener untuk tombol close
+    // event listener untuk tombol close
     const closeButton = popup.querySelector('.notification-close');
     closeButton.onclick = () => {
         clearTimeout(hideTimeout);
@@ -699,7 +699,7 @@ function initializeCharts() {
 }
 
 /**
- * Memperbarui grafik dengan data terbaru
+ * grafik dengan data terbaru
  */
 function updateCharts(stats) {
     // Mendapatkan tema saat ini
@@ -712,7 +712,6 @@ function updateCharts(stats) {
         window.weeklyChart.data.datasets[0].data = stats.dailyData.created;
         window.weeklyChart.data.datasets[1].data = stats.dailyData.completed;
         
-        // Memperbarui opsi untuk tema
         window.weeklyChart.options.plugins.legend.labels.color = textColor;
         window.weeklyChart.options.scales.x.grid.color = gridColor;
         window.weeklyChart.options.scales.y.grid.color = gridColor;
@@ -729,7 +728,6 @@ function updateCharts(stats) {
             stats.tasksByCategory.academic
         ];
         
-        // Memperbarui opsi untuk tema
         window.categoryChart.data.datasets[0].borderColor = isLightTheme ? '#ffffff' : '#1e293b';
         window.categoryChart.options.plugins.legend.labels.color = textColor;
         
@@ -738,14 +736,14 @@ function updateCharts(stats) {
 }
 
 /**
- * Inisialisasi scrolling yang ditingkatkan untuk pengalaman pengguna yang lebih baik
+ * Inisialisasi scrolling untuk pengalaman pengguna yang lebih baik
  */
 function initializeEnhancedScrolling() {
-    // Mendapatkan elemen task-list untuk scrolling yang ditingkatkan
+    // Mendapatkan elemen task-list untuk scrolling yang 
     const taskList = document.getElementById('task-list');
     const taskListContainer = document.querySelector('.task-list-container');
     
-    // Menambahkan indikator scroll jika konten melebihi area yang dapat dilihat
+    // indikator scroll jika konten melebihi area yang dapat dilihat
     const scrollHint = document.createElement('div');
     scrollHint.className = 'scroll-hint';
     scrollHint.innerHTML = '<i class="fas fa-chevron-down"></i>';
@@ -779,7 +777,7 @@ function initializeEnhancedScrolling() {
     taskList.addEventListener('scroll', () => {
         checkScrollHint();
         
-        // Tambahkan efek saat scrolling
+        // efek saat scrolling
         taskList.classList.add('scrolling');
         clearTimeout(taskList.scrollTimer);
         taskList.scrollTimer = setTimeout(() => {
@@ -793,7 +791,7 @@ function initializeEnhancedScrolling() {
     // Jalankan pemeriksaan awal
     checkScrollHint();
     
-    // Tambahkan optimasi scroll untuk performa yang lebih baik
+    // optimasi scroll untuk performa yang lebih baik
     const taskItems = document.querySelectorAll('.task-item');
     taskItems.forEach(item => {
         item.style.willChange = 'transform'; // Optimasi rendering browser
@@ -929,7 +927,7 @@ function showUsernameModal() {
                 }
             });
             
-            // Tambahkan efek visual pada input saat focus
+            // efek visual pada input saat focus
             usernameInput.addEventListener('focus', () => {
                 const container = usernameInput.parentElement;
                 if (container) container.classList.add('input-focused');
@@ -940,7 +938,7 @@ function showUsernameModal() {
                 if (container) container.classList.remove('input-focused');
             });
             
-            // Tambahkan event listener untuk tombol batal
+            // event listener untuk tombol batal
             cancelButton.addEventListener('click', () => closeUsernameModal(modal));
             
             profileState.eventListenersInitialized = true;
@@ -994,7 +992,7 @@ function handleProfileImageUpload(e) {
         // Tandai bahwa gambar telah dimodifikasi
         profileState.imageModified = true;
         
-        // Tambahkan kelas animasi uploading
+        // kelas animasi uploading
         profilePreview.classList.add('uploading');
         
         const reader = new FileReader();
@@ -1293,7 +1291,7 @@ function showUsernameNotification(username, changeType) {
         }, 500);
     }, 5000);
     
-    // Tambahkan event listener untuk tombol close
+    // event listener untuk tombol close
     const closeButton = popup.querySelector('.notification-close');
     closeButton.onclick = () => {
         clearTimeout(hideTimeout);
@@ -1327,7 +1325,7 @@ function animateDecorations() {
     });
 }
 
-// Tambahkan keyframe CSS untuk animasi floating
+// Keyframe CSS untuk animasi floating
 (function addFloatingAnimation() {
     const styleSheet = document.createElement('style');
     styleSheet.textContent = `
