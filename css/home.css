@@ -626,12 +626,10 @@ footer p {
     color: var(--text-muted);
 }
 
-/* Menambahkan efek scroll yang lebih halus untuk semua elemen yang dapat di-scroll */
 .task-list, .analytics-card, body {
     scroll-snap-type: y proximity; /* Untuk efek snap scroll yang halus */
 }
 
-/* Penambahan animasi scrolling untuk meningkatkan responsivitas */
 @keyframes pulseScroll {
     0% { transform: scale(1); }
     50% { transform: scale(1.05); }
